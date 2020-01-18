@@ -38,18 +38,18 @@ app.get('/api/waitlist', function(req, res) {
 
 // grabs info from the reservation form and creates new object & pushes into correct arr
 app.post('/api/newtable', function(req, res) {
-	let newTable = req.body;
+	let newReservation = req.body;
 
 	if (reservationsARR.length < 5) {
-		reservationsARR.push(newTable);
-		alert(`${newTable.name}, your reservation has been confirmed. Welcome to The Livingroom.`)
+		reservationsARR.push(newReservation);
+		alert(`${newReservation.name}, your reservation has been confirmed. Welcome to The Livingroom.`)
 	} else {
-		waitListARR.push(newTable);
-		alert(`${newTable.name}, The Livingroom is full, you have been added to the waitlist.`)
+		waitListARR.push(newReservation);
+		alert(`${newReservation.name}, The Livingroom is full, you have been added to the waitlist.`)
 	};
 
-	console.log(`New reservation made for ${newTable.name}`)
-	res.json(newTable);
+	console.log(`New reservation made for ${newReservation.name}`)
+	res.json(newReservation);
 	// newTable.routeName = newTable.name.replace(/\s+/g, '').toLowerCase();
 });
 
