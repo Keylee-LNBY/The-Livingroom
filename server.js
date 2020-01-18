@@ -42,10 +42,10 @@ app.post('/api/newtable', function(req, res) {
 
 	if (reservationsARR.length < 5) {
 		reservationsARR.push(newReservation);
-		alert(`${newReservation.name}, your reservation has been confirmed. Welcome to The Livingroom.`)
+		res.send(`${newReservation.name}, your reservation has been confirmed. Welcome to The Livingroom.`)
 	} else {
 		waitListARR.push(newReservation);
-		alert(`${newReservation.name}, The Livingroom is full, you have been added to the waitlist.`)
+		res.send(`${newReservation.name}, The Livingroom is full, you have been added to the waitlist.`)
 	};
 
 	console.log(`New reservation made for ${newReservation.name}`)
