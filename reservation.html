@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -63,6 +64,33 @@
 				</form>
 			</div>
 		</div>
+    
+    <script type="text/javascript">
+  // Question: What does this code do?
+  $("#add-btn").on("click", function(event) {
+    event.preventDefault();
+    var newReservation = {
+      name: $("#name")
+        .val()
+        .trim(),
+      phoneNumber: $("#phoneNumber")
+        .val()
+        .trim(),
+      email: $("#email")
+        .val()
+        .trim(),
+      id: $("#uniqueId")
+        .val()
+        .trim()
+    };
+
+    // Question: What does this code do??
+    $.post("/api/characters", newReservation).then(function(data) {
+      console.log("reservation.html", data);
+      alert("Adding reservation...");
+    });
+  });
+</script>
 		<script
 			src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -80,3 +108,4 @@
 		></script>
 	</body>
 </html>
+
