@@ -22,7 +22,7 @@
             <h2 class="text-center">Current Reservations and Waiting List</h2>
             <br>
             <div class="text-center">
-                <a href="/reserve">
+                <a href="/reservations">
                     <button type="button" class="btn btn-lg btn-danger">
                         <span class="glyphicon glyphicon-credit-card"></span>
                         Make Reservation
@@ -42,36 +42,12 @@
                         <h4 class="panel-title">Current Reservations</h4>
                     </div>
                     <div class="panel-body" id="tableSection">
-                        <div class="well" id="tableWell-01">
-                            <h2>
-                                <span class="label label-primary">1</span>
-                                | ambernina
-                            </h2>
-                        </div>
-                        <div class="well" id="tableWell-11">
-                            <h2>
-                                <span class="label label-primary">2</span>
-                                | trudy
-                            </h2>
-                        </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">Waiting List</h4>
                         </div>
                         <div class="panel-body" id="waitlistSection">
-                            <div class="well" id="waitlistWell-01">
-                                <h2>
-                                    <span class="label label-primary">1</span>
-                                    | ambernina
-                                </h2>
-                            </div>
-                            <div class="well" id="waitlistWell-01">
-                                <h2>
-                                    <span class="label label-primary">2</span>
-                                    | trudy
-                                </h2>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,7 +59,7 @@
                 <p>
                     <a href="#" id="clear">Clear Tables</a>
                     |
-                    <a href="/api/tables">API Table Link</a>
+                    <a href="/api/currentseating">API Table Link</a>
                     |
                     <a href="/api/waitlist">API Wait List</a>
                 </p>
@@ -91,6 +67,67 @@
         </footer>
     </div>
     <script type="text/javascript">
+
+        function runTableQuery() {
+            const currentURL = window.location.origin;
+
+            $.ajax({url: currentURL + "/api/currentseating", method: "GET"})
+            .done(function(tableData) {
+                console.log(`URL: ${currentURL}/api/tables`);
+                console.log("-----");
+                console.log(tableData);
+
+                for (var i=0; i<tableData.length; i++) {
+                    const tableSection = $("<div>");
+                    tableSection.addClass('well');
+                    tableSection.attr('id', 'tableWell-' + i+1);
+                    $('#tableSection').append(tableSection);
+
+                    const tableNum = i + 1;
+
+                    $('#tableWell-' + i+1).append(`<h2><span class="label label-primary">${tableNumber}</span> | ${tableData[i].customerID}</h2>`)
+                }
+            });
+        }
+
+        function runWaitListQuery() {
+            const currentURL = window.location.origin;
+
+            $.ajax({url: currentURL + "/api/waitlist", method: "GET"})
+            .done(function(waitlistData) {
+                console.log(`URL: ${currentURL}/api/waitlist`);
+                console.log("-----");
+                console.log(waitlistData);
+
+                for (var i=0; i<waitlistData.length; i++) {
+                    const waitlistSection = $("<div>");
+                    waitlistSection.addClass('well');
+                    waitlistSection.attr('id', 'waitlistWell-' + i+1);
+                    $('#waitlistSection').append(tableSection);
+
+                    const tableNum = i + 1;
+
+                    $('#waitlistWell-' + i+1).append(`<h2><span class="label label-primary">${tableNumber}</span> | ${waitlistData[i].customerID}</h2>`)
+                }
+            });
+        }
+
+        function clearTable() {
+            const currentURL = window.location.origin;
+
+            $.ajax({url: currentURL + "/api/clear", method: "POST"})
+        }
+
+        $("#clear").on('click', function() {
+            alert("Clearing tables...");
+            clearTable();
+
+            location.reload();
+        });
+
+        runTableQuery();
+        runWaitListQuery();
+
     </script>
 </body>
 
