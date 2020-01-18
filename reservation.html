@@ -1,96 +1,97 @@
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="css/style.css" />
 		<link
 			rel="stylesheet"
-			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+			integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
 			crossorigin="anonymous"
 		/>
-		<title>Document</title>
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+			integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+			crossorigin="anonymous"
+		></script>
+
+		<title>Reservation</title>
 	</head>
 	<body>
 		<div class="jumbotron">
-			<h1 class="display-4">The Living Room</h1>
+			<h1 class="display-4">
+				<span class="glyphicon glyphicon-cutlery"></span> The Living Room
+			</h1>
 			<p class="lead">
 				Make your reservation
 			</p>
 			<hr class="my-4" />
 			<p></p>
 			<a class="btn btn-primary btn-lg" href="#" role="button">View Tables</a>
-			<a
-				href="#"
-				class="btn btn-secondary btn-lg active"
-				role="button"
-				aria-pressed="true"
-				>Link</a
-			>
+			<a href="/">
+				<button type="button" class="btn btn-lg btn-default">
+					<span class="glyphicon glyphicon-home"></span>
+				</button>
+			</a>
 		</div>
-
-		<div class="card">
-			<div class="card-header">Table Reservation</div>
-			<div class="card-body">
-				<form>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Name</label>
-						<input type="name" class="form-control" id="name" />
-
+		<div class="container">
+			<div class="card">
+				<div class="card-header">Table Reservation</div>
+				<div class="card-body">
+					<form>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Phone Number</label>
+							<label for="name">Name</label>
 							<input type="name" class="form-control" id="name" />
-						</div>
-						<div class="form-group">
-							<label for="phoneNumber">Email</label>
-							<input
-								type="password"
-								class="form-control"
-								id="exampleInputPassword1"
-							/>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Phone Number</label>
+								<input type="name" class="form-control" id="name" />
+							</div>
+							<div class="form-group">
+								<label for="phoneNumber">Email</label>
+								<input type="email" class="form-control" id="email" />
+							</div>
+							<div class="form-group form-check"></div>
+							<label for="uniqueID">Unique ID</label>
+							<input type="uniqueID" class="form-control" id="uniqueID" />
 						</div>
 						<div class="form-group form-check"></div>
-						<label for="exampleInputPassword1">Unique ID</label>
-						<input
-							type="password"
-							class="form-control"
-							id="exampleInputPassword1"
-						/>
-					</div>
-					<div class="form-group form-check"></div>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+						<button type="submit" class="btn btn-primary" id="submit">
+							Submit
+						</button>
+					</form>
+				</div>
 			</div>
 		</div>
-    
-    <script type="text/javascript">
-  // Question: What does this code do?
-  $("#add-btn").on("click", function(event) {
-    event.preventDefault();
-    var newReservation = {
-      name: $("#name")
-        .val()
-        .trim(),
-      phoneNumber: $("#phoneNumber")
-        .val()
-        .trim(),
-      email: $("#email")
-        .val()
-        .trim(),
-      id: $("#uniqueId")
-        .val()
-        .trim()
-    };
+		<script type="text/javascript">
+			// Question: What does this code do?
+			$('#add-btn').on('click', function(event) {
+				event.preventDefault();
+				var newReservation = {
+					name: $('#name')
+						.val()
+						.trim(),
+					phoneNumber: $('#phoneNumber')
+						.val()
+						.trim(),
+					email: $('#email')
+						.val()
+						.trim(),
+					id: $('#uniqueId')
+						.val()
+						.trim()
+				};
 
-    // Question: What does this code do??
-    $.post("/api/characters", newReservation).then(function(data) {
-      console.log("reservation.html", data);
-      alert("Adding reservation...");
-    });
-  });
-</script>
+				// Question: What does this code do??
+				$.post('/api/characters', newReservation).then(function(data) {
+					console.log('reservation.html', data);
+					alert('Adding reservation...');
+				});
+			});
+		</script>
 		<script
 			src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -108,4 +109,3 @@
 		></script>
 	</body>
 </html>
-
