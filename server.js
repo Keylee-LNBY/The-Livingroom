@@ -44,7 +44,10 @@ app.post('/api/newtable', function(req, res) {
 		reservationsARR.push(newTable);
 	} else {
 		waitListARR.push(newTable);
-	}
+	};
+
+	console.log(`New reservation made for ${newTable.name}`)
+	res.json(newTable);
 	// newTable.routeName = newTable.name.replace(/\s+/g, '').toLowerCase();
 });
 
