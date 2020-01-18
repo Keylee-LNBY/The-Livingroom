@@ -1,0 +1,19 @@
+.jumbotron {
+	margin-left: 2%;
+	margin-right: 2%;
+}
+.display-4,
+.lead {
+	text-align: center;
+}
+.btn-primary {
+	margin: center;
+	margin-left: 40%;
+}
+.btn-secondary {
+	margin-right: 25%;
+}
+#submit {
+	margin: 0;
+}
+/* Testing
