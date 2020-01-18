@@ -1,0 +1,26 @@
+<script type="text/javascript">
+  // Question: What does this code do?
+  $("#add-btn").on("click", function(event) {
+    event.preventDefault();
+    var newReservation = {
+      name: $("#name")
+        .val()
+        .trim(),
+      phoneNumber: $("#phoneNumber")
+        .val()
+        .trim(),
+      email: $("#email")
+        .val()
+        .trim(),
+      id: $("#uniqueId")
+        .val()
+        .trim()
+    };
+
+    // Question: What does this code do??
+    $.post("/api/characters", newReservation).then(function(data) {
+      console.log("reservation.html", data);
+      alert("Adding reservation...");
+    });
+  });
+</script>
